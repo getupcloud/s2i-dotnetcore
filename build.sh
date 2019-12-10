@@ -111,7 +111,7 @@ fi
 if [ "$IMAGE_OS" = "CENTOS" ]; then
   VERSIONS="${VERSIONS:-2.1 2.2}"
   image_postfix="-centos7"
-  image_prefix="dotnet"
+  image_prefix="getupcloud"
   docker_filename="Dockerfile"
 elif [ "$IMAGE_OS" = "RHEL8" ]; then
   VERSIONS="${VERSIONS:-2.1}"

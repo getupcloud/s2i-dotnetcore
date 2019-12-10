@@ -5,7 +5,7 @@ FROM centos:7
 EXPOSE 8080
 
 ENV HOME=/opt/app-root \
-    PATH=/opt/app-root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
+    PATH=/opt/app-root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/app-root/.dotnet/tools/ \
     DOTNET_APP_PATH=/opt/app-root/app \
     DOTNET_DATA_PATH=/opt/app-root/data \
     DOTNET_DEFAULT_CMD=default-cmd.sh \
@@ -45,8 +45,10 @@ COPY ./contrib/ /opt/app-root
 
 COPY ./root/usr/bin /usr/bin
 
-RUN yum install -y centos-release-dotnet && \
-    INSTALL_PKGS="rh-dotnet30-aspnetcore-runtime-3.0 nss_wrapper tar unzip" && \
+RUN yum install -y centos-release-scl-rh \
+    https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm && \
+    yum --enablerepo=packages-microsoft-com-prod clean metadata && \
+    INSTALL_PKGS="aspnetcore-runtime-3.0 nss_wrapper tar unzip scl-utils" && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     yum clean all -y && \
@@ -55,7 +57,7 @@ RUN yum install -y centos-release-dotnet && \
 
 # Get prefix path and path to scripts rather than hard-code them in scripts
 ENV CONTAINER_SCRIPTS_PATH=/opt/app-root \
-    ENABLED_COLLECTIONS="rh-dotnet30"
+    ENABLED_COLLECTIONS=""
 
 # When bash is started non-interactively, to run a shell script, for example it
 # looks for this variable and source the content of this file. This will enable

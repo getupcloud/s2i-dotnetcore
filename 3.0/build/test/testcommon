@@ -99,7 +99,7 @@ assert_completed_build() {
   if [ "$USING_PODMAN" ]; then
     assert_contains "${log}" "COMMIT ${image}"
   else
-    assert_contains "${log}" "Build completed successfully"
+    assert_contains "${log}" "Build succeeded"
   fi
 }
 

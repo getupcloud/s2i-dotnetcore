@@ -40,7 +40,7 @@ OPENSHIFT_ONLY=${OPENSHIFT_ONLY:-false}
 test_dir="$(readlink -zf $(dirname "${BASH_SOURCE[0]}"))"
 source ${test_dir}/testcommon
 
-npm_version=6.4.1
+npm_version=6.9.0
 
 if [ "$IMAGE_OS" = "CENTOS" ]; then
 # sdk version supported on CentOS

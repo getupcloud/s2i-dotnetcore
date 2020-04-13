@@ -48,7 +48,7 @@ COPY ./root/usr/bin /usr/bin
 RUN yum install -y centos-release-scl-rh \
     https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm && \
     yum --enablerepo=packages-microsoft-com-prod clean metadata && \
-    INSTALL_PKGS="aspnetcore-runtime-3.0 nss_wrapper tar unzip scl-utils" && \
+    INSTALL_PKGS="aspnetcore-runtime-3.1 nss_wrapper tar unzip scl-utils" && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     yum clean all -y && \

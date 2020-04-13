@@ -38,7 +38,7 @@ source ${test_dir}/testcommon
 dotnet_version_series="2.2"
 
 if [ "$IMAGE_OS" = "CENTOS" ]; then
-dotnet_version="2.2.3"
+dotnet_version="2.2.8"
 elif [ "$IMAGE_OS" = "RHEL7" ]; then
 dotnet_version="2.2.7"
 fi
